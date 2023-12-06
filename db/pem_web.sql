@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 29, 2023 at 04:34 PM
+-- Generation Time: Dec 06, 2023 at 05:14 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -20,6 +20,54 @@ SET time_zone = "+00:00";
 --
 -- Database: `pem_web`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `berita`
+--
+
+CREATE TABLE `berita` (
+  `id` int(11) NOT NULL,
+  `idKategori` int(11) NOT NULL,
+  `judul` varchar(100) NOT NULL,
+  `isi` text NOT NULL,
+  `gambar` text DEFAULT NULL,
+  `status` int(1) NOT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `berita`
+--
+
+INSERT INTO `berita` (`id`, `idKategori`, `judul`, `isi`, `gambar`, `status`, `createdAt`, `updatedAt`) VALUES
+(2, 5, 'Girona sang penantang', 'Girona yang saat ini menduduki urutan 2 klasemen di La Liga', NULL, 1, '2023-12-06 02:51:50', '2023-12-06 03:47:30'),
+(5, 5, 'City vs Totenham', 'Manchester City ditahan imbang oleh Totenham Hotspur dengan skor 3-3', 'file_1701833884.jpeg', 1, '2023-12-06 03:05:57', '2023-12-06 03:47:24'),
+(7, 3, 'Contoh Berita', 'Contoh isi', 'file_1701833744.jpeg', 0, '2023-12-06 03:30:34', '2023-12-06 03:35:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategori`
+--
+
+CREATE TABLE `kategori` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`id`, `nama`, `createdAt`, `updatedAt`) VALUES
+(1, 'Politik', '2023-12-06 01:45:18', '2023-12-06 02:08:31'),
+(3, 'Pendidikan', '2023-12-06 01:46:12', NULL),
+(5, 'Olahraga', '2023-12-06 03:47:19', NULL);
 
 -- --------------------------------------------------------
 
@@ -52,6 +100,18 @@ INSERT INTO `user` (`id`, `nama`, `username`, `password`, `jenisKelamin`, `statu
 --
 
 --
+-- Indexes for table `berita`
+--
+ALTER TABLE `berita`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kategori`
+--
+ALTER TABLE `kategori`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -60,6 +120,18 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `berita`
+--
+ALTER TABLE `berita`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `kategori`
+--
+ALTER TABLE `kategori`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
